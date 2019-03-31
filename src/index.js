@@ -1,4 +1,5 @@
 const { registerBlockType } = wp.blocks;
+console.log( 'bl', wp.blocks );
 
 registerBlockType( 'myguten/test-block', {
 	title: 'Basic Example',

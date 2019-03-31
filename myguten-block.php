@@ -36,4 +36,5 @@ function my_custom_block_register_block() {
 	) );
 
 }
+
 add_action( 'init', 'my_custom_block_register_block' );
