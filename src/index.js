@@ -4,6 +4,6 @@ registerBlockType( 'myguten/test-block', {
 	title: 'Basic Example',
 	icon: 'smiley',
 	category: 'layout',
-	edit: () => <div>Hola, mundo!</div>,
-save: () => <div>Hola, mundo!</div>,
+	edit: ( { className } ) => <div className={ className }>Hello World!</div>,
+	save: () => <div>Hello World!</div>,
 } );
