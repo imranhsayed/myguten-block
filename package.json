@@ -1,0 +1,16 @@
+{
+  "name": "myguten-block",
+  "version": "1.0.0",
+  "description": "Test Block",
+  "main": "index.js",
+  "scripts": {
+    "start": "wp-scripts start",
+    "build": "wp-scripts build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/scripts": "3.1.0",
+    "eslint-config-wordpress": "^2.0.0"
+  }
+}
