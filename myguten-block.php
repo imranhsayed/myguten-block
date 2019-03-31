@@ -20,6 +20,7 @@ function my_custom_block_register_block() {
 		filemtime( plugin_dir_path( __FILE__ ) . 'src/editor.css' )
 	);
 
+	// Register front end block style src/style.css
 	wp_register_style(
 		'my-custom-block-frontend-style',
 		plugins_url( 'src/style.css', __FILE__ ),
