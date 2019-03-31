@@ -29,7 +29,7 @@ function my_custom_block_register_block() {
 	);
 
 	// Register your block
-	register_block_type( 'my-custom-block/example-01-basic', array(
+	register_block_type( 'myguten-block/test-block', array(
 		'editor_script' => 'my-custom-block',
 		'editor_style' => 'my-custom-block-editor-style',
 		'style' => 'my-custom-block-frontend-style',

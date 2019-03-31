@@ -1,6 +1,6 @@
 const { registerBlockType } = wp.blocks;
 
-registerBlockType( 'myguten/test-block', {
+registerBlockType( 'myguten-block/test-block', {
 	title: 'Basic Example',
 	icon: 'smiley',
 	category: 'layout',
