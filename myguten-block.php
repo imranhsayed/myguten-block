@@ -12,6 +12,7 @@ function my_custom_block_register_block() {
 		filemtime( plugin_dir_path( __FILE__ ) . 'build/index.js' )
 	);
 
+	// Register editor style src/editor.css
 	wp_register_style(
 		'my-custom-block-editor-style',
 		plugins_url( 'src/editor.css', __FILE__ ),
