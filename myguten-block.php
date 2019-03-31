@@ -4,6 +4,7 @@ Plugin Name: My Gutenberg Block
 */
 function my_custom_block_register_block() {
 
+	// Register JavasScript File build/index.js
 	wp_register_script(
 		'my-custom-block',
 		plugins_url( 'build/index.js', __FILE__ ),
