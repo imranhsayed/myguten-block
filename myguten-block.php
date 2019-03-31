@@ -28,6 +28,7 @@ function my_custom_block_register_block() {
 		filemtime( plugin_dir_path( __FILE__ ) . 'src/style.css' )
 	);
 
+	// Register your block
 	register_block_type( 'my-custom-block/example-01-basic', array(
 		'editor_script' => 'my-custom-block',
 		'editor_style' => 'my-custom-block-editor-style',
