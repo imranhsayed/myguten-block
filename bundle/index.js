@@ -66,49 +66,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/newfile.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-
-var registerBlockType = wp.blocks.registerBlockType;
-registerBlockType('myguten-block/test-block', {
-  title: 'Basic Example',
-  icon: 'smiley',
-  category: 'layout',
-  edit: function edit(_ref) {
-    var className = _ref.className;
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-      className: className
-    }, "Hello World!");
-  },
-  save: function save() {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, "Hello World!");
-  }
-});
-
-/***/ }),
-
-/***/ "@wordpress/element":
-/*!******************************************!*\
-  !*** external {"this":["wp","element"]} ***!
-  \******************************************/
+/***/ "./src/newfile.js":
+/*!************************!*\
+  !*** ./src/newfile.js ***!
+  \************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-(function() { module.exports = this["wp"]["element"]; }());
+console.log('test');
 
 /***/ })
 
