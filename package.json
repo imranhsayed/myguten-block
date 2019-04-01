@@ -2,6 +2,22 @@
   "name": "myguten-block",
   "version": "1.0.0",
   "description": "Test Block",
+  "author": "",
+  "license": "GPL-2.0-or-later",
+  "keywords": [ "gutenberg", "blocks"  ],
+  "homepage": "https://github.com/imranhsayed/myguten-block/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imranhsayed/myguten-block/"
+  },
+  "bugs": {
+    "url": "https://github.com/imranhsayed/myguten-block/issues"
+  },
+  "main": "index.js",
+  "devDependencies": {
+    "@wordpress/scripts": "3.1.0",
+    "eslint-config-wordpress": "^2.0.0"
+  },
   "scripts": {
     "start": "wp-scripts start",
     "build": "wp-scripts build",
@@ -9,13 +25,8 @@
     "check-licenses": "wp-scripts check-licenses --prod --gpl2 --ignore=abab",
     "lint:js": "wp-scripts lint-js src/index.js",
     "lint:js-fix": "wp-scripts lint-js src/index.js --fix",
-    "lint:pkg-json": "wp-scripts lint-pkg-json ."
-  },
-  "author": "",
-  "license": "ISC",
-  "main": "index.js",
-  "devDependencies": {
-    "@wordpress/scripts": "3.1.0",
-    "eslint-config-wordpress": "^2.0.0"
+    "lint:pkg-json": "wp-scripts lint-pkg-json .",
+    "lint:css": "wp-scripts lint-style '**/*.css'",
+    "lint:css-fix": "wp-scripts lint-style '**/*.css' --fix"
   }
 }
