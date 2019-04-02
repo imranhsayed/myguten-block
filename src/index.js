@@ -1,6 +1,8 @@
 const { registerBlockType } = wp.blocks;
 const { RichText } = wp.editor;
 
+console.log( this.state );
+
 const result = registerBlockType( 'myguten-block/test-block', {
 	title: 'Basic Example',
 	icon: 'smiley',
@@ -9,6 +11,9 @@ const result = registerBlockType( 'myguten-block/test-block', {
 		return (
 			<RichText
 				tagName="p"
+				className={ className }
+				onChange={ onChangeContent }
+				value={ content }
 			/>
 		)
 	},
