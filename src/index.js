@@ -1,23 +1,11 @@
+
+// src/index.js
 const { registerBlockType } = wp.blocks;
-const { RichText } = wp.editor;
 
-console.log( this.state );
-
-const result = registerBlockType( 'myguten-block/test-block', {
+registerBlockType( 'myguten-block/test-block', {
 	title: 'Basic Example',
 	icon: 'smiley',
 	category: 'layout',
-	edit: ( props ) => {
-		return (
-			<RichText
-				tagName="p"
-				className={ className }
-				onChange={ onChangeContent }
-				value={ content }
-			/>
-		)
-	},
+	edit: ( { className } ) => <div className={ className }>Hello World!</div>,
 	save: () => <div>Hello World!</div>
 } );
-
-console.log( result );
