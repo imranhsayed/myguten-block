@@ -1,5 +1,6 @@
 const { registerBlockType } = wp.blocks;
-const { RichText, BlockControls, AlignmentToolbar } = wp.editor;
+const { RichText, BlockControls, AlignmentToolbar,
+	InspectorControls, ColorPalette } = wp.editor;
 
 registerBlockType( 'myguten-block/test-block', {
 	title: 'Basic Example',
@@ -14,14 +15,19 @@ registerBlockType( 'myguten-block/test-block', {
 	},
 	edit: ( props ) => {
 		console.log( props );
-		const { attributes: { content, alignment }, setAttributes, className } = props;
+		const { attributes: { content, alignment, newColor }, setAttributes, className } = props;
 		const onChangeContent = ( newContent ) => {
 			setAttributes( { content: newContent } );
 		};
 
 		const onChangeAlignment = ( newAlignment ) => {
 			let alignmentValue = ( newAlignment === undefined ) ? 'none' : newAlignment;
-				setAttributes( { alignment: alignmentValue } )
+				setAttributes( { alignment: alignmentValue } );
+		};
+
+		const onChangeTextColor = ( newColor ) => {
+			let newColorValue = ( newColor === undefined ) ? 'none' : newColor;
+			setAttributes( { newColor: newColorValue } );
 		};
 
 		return (
@@ -35,13 +41,18 @@ registerBlockType( 'myguten-block/test-block', {
 					</BlockControls>
 				}
 				{
-					<Inspector>
-
-					</Inspector>
+					<InspectorControls>
+						<ColorPalette // Element Tag for Gutenberg standard colour selector
+							onChange={onChangeTextColor} // onChange event callback
+						/>
+					</InspectorControls>
 				}
 				<RichText
 					tagName="p"
-					style = {{ textAlign: alignment }}
+					style = {{
+						textAlign: alignment,
+						color: newColor
+					}}
 					className={ className }
 					onChange={ onChangeContent }
 					value={ content }
@@ -50,8 +61,15 @@ registerBlockType( 'myguten-block/test-block', {
 		);
 	},
 	save: ( props ) => {
+
+		const contentStyle = {
+			textAlign: props.attributes.alignment,
+			color: props.attributes.newColor
+		}
+
 		return (
 			<RichText.Content
+				style= { contentStyle }
 				className={ `myguten-block-align-${ props.attributes.alignment }` }
 				tagName="p"
 				value={ props.attributes.content }
