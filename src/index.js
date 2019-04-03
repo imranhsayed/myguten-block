@@ -1,7 +1,7 @@
 const { registerBlockType } = wp.blocks;
 const { RichText, BlockControls, AlignmentToolbar } = wp.editor;
 
-const result = registerBlockType( 'myguten-block/test-block', {
+registerBlockType( 'myguten-block/test-block', {
 	title: 'Basic Example',
 	icon: 'smiley',
 	category: 'layout',
@@ -55,4 +55,3 @@ const result = registerBlockType( 'myguten-block/test-block', {
 	},
 } );
 
-console.log( result );
