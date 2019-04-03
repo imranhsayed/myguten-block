@@ -34,6 +34,11 @@ registerBlockType( 'myguten-block/test-block', {
 						/>
 					</BlockControls>
 				}
+				{
+					<Inspector>
+
+					</Inspector>
+				}
 				<RichText
 					tagName="p"
 					style = {{ textAlign: alignment }}
