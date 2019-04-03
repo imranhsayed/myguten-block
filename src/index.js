@@ -2,7 +2,7 @@ const { registerBlockType } = wp.blocks;
 const { RichText, BlockControls, AlignmentToolbar,
 	InspectorControls, ColorPalette } = wp.editor;
 
-registerBlockType( 'myguten-block/test-block', {
+const result = registerBlockType( 'myguten-block/test-block', {
 	title: 'Basic Example',
 	icon: 'smiley',
 	category: 'layout',
@@ -12,10 +12,16 @@ registerBlockType( 'myguten-block/test-block', {
 			source: 'children',
 			selector: 'p',
 		},
+		textColor: {
+			source: 'attribute',
+			selector: 'p',
+			attribute: 'style'
+		}
 	},
 	edit: ( props ) => {
-		console.log( props );
-		const { attributes: { content, alignment, newColor }, setAttributes, className } = props;
+		console.log( 'props', props );
+		const { attributes: { content, alignment, textColor }, setAttributes, className } = props;
+
 		const onChangeContent = ( newContent ) => {
 			setAttributes( { content: newContent } );
 		};
@@ -27,7 +33,7 @@ registerBlockType( 'myguten-block/test-block', {
 
 		const onChangeTextColor = ( newColor ) => {
 			let newColorValue = ( newColor === undefined ) ? 'none' : newColor;
-			setAttributes( { newColor: newColorValue } );
+			setAttributes( { textColor: newColorValue } );
 		};
 
 		return (
@@ -49,10 +55,7 @@ registerBlockType( 'myguten-block/test-block', {
 				}
 				<RichText
 					tagName="p"
-					style = {{
-						textAlign: alignment,
-						color: newColor
-					}}
+					style={{ color: textColor }}
 					className={ className }
 					onChange={ onChangeContent }
 					value={ content }
@@ -62,19 +65,20 @@ registerBlockType( 'myguten-block/test-block', {
 	},
 	save: ( props ) => {
 
-		const contentStyle = {
-			textAlign: props.attributes.alignment,
-			color: props.attributes.newColor
-		}
+		// const textColor = {
+		// 	textAlign: props.attributes.alignment,
+		// 	color: props.attributes.newColor
+		// }
+		console.log( 'saves', props.attributes.textColor );
 
 		return (
-			<RichText.Content
-				style= { contentStyle }
-				className={ `myguten-block-align-${ props.attributes.alignment }` }
-				tagName="p"
-				value={ props.attributes.content }
-			/>
+
+		<RichText.Content
+			style={ props.attributes.textColor }
+			tagName="p"
+			value={ props.attributes.content } />
 		);
 	},
 } );
 
+console.log( 'result', result );
