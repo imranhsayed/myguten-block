@@ -26,7 +26,6 @@
     "lint:js": "wp-scripts lint-js src/index.js",
     "lint:js-fix": "wp-scripts lint-js src/index.js --fix",
     "lint:pkg-json": "wp-scripts lint-pkg-json .",
-    "lint:css": "wp-scripts lint-style '**/*.css'",
-    "lint:css-fix": "wp-scripts lint-style '**/*.css' --fix"
+    "lint:css": "wp-scripts lint-style '**/*.css'"
   }
 }
