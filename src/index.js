@@ -19,7 +19,7 @@ const result = registerBlockType( 'myguten-block/test-block', {
 		}
 	},
 	edit: ( props ) => {
-		console.log( 'props', props );
+		console.log( 'edit-props', props );
 		const { attributes: { content, alignment, textColor }, setAttributes, className } = props;
 
 		const onChangeContent = ( newContent ) => {
@@ -69,7 +69,11 @@ const result = registerBlockType( 'myguten-block/test-block', {
 		// 	textAlign: props.attributes.alignment,
 		// 	color: props.attributes.newColor
 		// }
-		console.log( 'saves', props.attributes.textColor );
+		console.log( 'saves', 		<RichText.Content
+			style={ props.attributes.textColor }
+			tagName="p"
+			value={ props.attributes.content } />
+		 );
 
 		return (
 
