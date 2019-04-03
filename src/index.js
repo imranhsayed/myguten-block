@@ -10,17 +10,22 @@ const result = registerBlockType( 'myguten-block/test-block', {
 		content: {
 			type: 'array',
 			source: 'children',
-			selector: 'p',
+			selector: 'p'
 		},
-		textColor: {
+		contentStyle: {
+			type: 'object',
 			source: 'attribute',
 			selector: 'p',
-			attribute: 'style'
+			attribute: 'style',
+			default: {
+				color: 'black',
+				textAlign: 'left'
+			}
 		}
 	},
 	edit: ( props ) => {
 		console.log( 'edit-props', props );
-		const { attributes: { content, alignment, textColor }, setAttributes, className } = props;
+		let { attributes: { content, contentStyle }, setAttributes, className } = props;
 
 		const onChangeContent = ( newContent ) => {
 			setAttributes( { content: newContent } );
@@ -28,12 +33,22 @@ const result = registerBlockType( 'myguten-block/test-block', {
 
 		const onChangeAlignment = ( newAlignment ) => {
 			let alignmentValue = ( newAlignment === undefined ) ? 'none' : newAlignment;
-				setAttributes( { alignment: alignmentValue } );
+			setAttributes( {
+				contentStyle: {
+					color: contentStyle.color,
+					textAlign: alignmentValue
+				}
+			} );
 		};
 
 		const onChangeTextColor = ( newColor ) => {
 			let newColorValue = ( newColor === undefined ) ? 'none' : newColor;
-			setAttributes( { textColor: newColorValue } );
+			setAttributes( {
+				contentStyle: {
+					color: newColorValue,
+					textAlign: contentStyle.textAlign
+				}
+			} );
 		};
 
 		return (
@@ -41,7 +56,7 @@ const result = registerBlockType( 'myguten-block/test-block', {
 				{
 					<BlockControls>
 						<AlignmentToolbar
-							value={ alignment }
+							value={ contentStyle.textAlign }
 							onChange={ onChangeAlignment }
 						/>
 					</BlockControls>
@@ -55,7 +70,7 @@ const result = registerBlockType( 'myguten-block/test-block', {
 				}
 				<RichText
 					tagName="p"
-					style={{ color: textColor }}
+					style={ contentStyle }
 					className={ className }
 					onChange={ onChangeContent }
 					value={ content }
@@ -64,25 +79,11 @@ const result = registerBlockType( 'myguten-block/test-block', {
 		);
 	},
 	save: ( props ) => {
-
-		// const textColor = {
-		// 	textAlign: props.attributes.alignment,
-		// 	color: props.attributes.newColor
-		// }
-		console.log( 'saves', 		<RichText.Content
-			style={ props.attributes.textColor }
-			tagName="p"
-			value={ props.attributes.content } />
-		 );
-
+		console.log( 'saveProps', props );
 		return (
-
-		<RichText.Content
-			style={ props.attributes.textColor }
-			tagName="p"
-			value={ props.attributes.content } />
+			<RichText.Content style={ props.attributes.contentStyle } tagName="p" value={ props.attributes.content } />
 		);
-	},
+	}
 } );
 
 console.log( 'result', result );
