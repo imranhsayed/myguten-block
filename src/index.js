@@ -77,11 +77,9 @@ const result = registerBlockType( 'myguten-block/test-block', {
 		);
 	},
 	save: ( props ) => {
-		console.log( 'saveProps', props );
+		console.log( 'save-props', props );
 		return (
 			<RichText.Content style={ props.attributes.contentStyle } tagName="p" value={ props.attributes.content } />
 		);
 	}
 } );
-
-console.log( 'result', result );
