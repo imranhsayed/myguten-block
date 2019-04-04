@@ -1,89 +1,29 @@
 const { registerBlockType } = wp.blocks;
-const { RichText, BlockControls, AlignmentToolbar,
-	InspectorControls, ColorPalette } = wp.editor;
+const { withSelect } = wp.data;
 
-const result = registerBlockType( 'myguten-block/test-block', {
+registerBlockType( 'myguten-block/test-block', {
 	title: 'Basic Example',
-	icon: 'smiley',
-	category: 'layout',
-	attributes: {
-		content: {
-			type: 'array',
-			source: 'children',
-			selector: 'p'
-		},
-		contentStyle: {
-			type: 'object',
-			source: 'attribute',
-			selector: 'p',
-			attribute: 'style',
-			default: {
-				color: 'black',
-				textAlign: 'left'
-			}
+	icon: 'megaphone',
+	category: 'widgets',
+
+	edit: withSelect( ( select ) => {
+		return {
+			posts: select( 'core' ).getEntityRecords( 'postType', 'post' )
+		};
+	} )( ( { posts, className } ) => {
+
+		if ( ! posts ) {
+			return "Loading...";
 		}
-	},
-	edit: ( props ) => {
-		console.log( 'edit-props', props );
-		let { attributes: { content, contentStyle }, setAttributes, className } = props;
 
-		const onChangeContent = ( newContent ) => {
-			setAttributes( { content: newContent } );
-		};
+		if ( posts && posts.length === 0 ) {
+			return "No posts";
+		}
 
-		const onChangeAlignment = ( newAlignment ) => {
-			let alignmentValue = ( newAlignment === undefined ) ? 'none' : newAlignment;
-			setAttributes( {
-				contentStyle: {
-					color: contentStyle.color,
-					textAlign: alignmentValue
-				}
-			} );
-		};
+		let post = posts[ 0 ];
 
-		const onChangeTextColor = ( newColor ) => {
-			let newColorValue = ( newColor === undefined ) ? 'none' : newColor;
-			setAttributes( {
-				contentStyle: {
-					color: newColorValue,
-					textAlign: contentStyle.textAlign
-				}
-			} );
-		};
-
-		return (
-			<div>
-				{
-					<BlockControls>
-						<AlignmentToolbar
-							value={ contentStyle.textAlign }
-							onChange={ onChangeAlignment }
-						/>
-					</BlockControls>
-				}
-				{
-					<InspectorControls>
-						<ColorPalette // Element Tag for Gutenberg standard colour selector
-							onChange={onChangeTextColor} // onChange event callback
-						/>
-					</InspectorControls>
-				}
-				<RichText
-					tagName="p"
-					style={ contentStyle }
-					className={ className }
-					onChange={ onChangeContent }
-					value={ content }
-				/>
-			</div>
-		);
-	},
-	save: ( props ) => {
-		console.log( 'saveProps', props );
-		return (
-			<RichText.Content style={ props.attributes.contentStyle } tagName="p" value={ props.attributes.content } />
-		);
-	}
+		return <a className={ className } href={ post.link }>
+			{ post.title.rendered }
+		</a>;
+	} ),
 } );
-
-console.log( 'result', result );
