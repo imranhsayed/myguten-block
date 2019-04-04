@@ -6,6 +6,9 @@ registerBlockType( 'myguten-block/test-block', {
 	icon: 'megaphone',
 	category: 'widgets',
 
+	/**
+	 * This will display the last post from the database into the editor.
+	 */
 	edit: withSelect( ( select ) => {
 		return {
 			posts: select( 'core' ).getEntityRecords( 'postType', 'post' )
