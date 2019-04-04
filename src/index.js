@@ -26,4 +26,5 @@ registerBlockType( 'myguten-block/test-block', {
 			{ post.title.rendered }
 		</a>;
 	} ),
+	save: ( props ) => ( <div></div> )
 } );
