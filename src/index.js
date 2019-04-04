@@ -25,7 +25,6 @@ const result = registerBlockType( 'myguten-block/test-block', {
 		let { attributes: { content, contentStyle }, setAttributes, className } = props;
 
 		const onChangeContent = ( newContent ) => {
-			event.stopPropagation();
 			setAttributes( { content: newContent } );
 		};
 
