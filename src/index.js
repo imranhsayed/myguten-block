@@ -2,7 +2,7 @@ const { registerBlockType } = wp.blocks;
 const { RichText, BlockControls, AlignmentToolbar,
 	InspectorControls, ColorPalette } = wp.editor;
 
-registerBlockType( 'myguten-block/test-block', {
+const result = registerBlockType( 'myguten-block/test-block', {
 	title: 'Basic Example',
 	icon: 'smiley',
 	category: 'layout',
@@ -14,9 +14,6 @@ registerBlockType( 'myguten-block/test-block', {
 		},
 		contentStyle: {
 			type: 'object',
-			source: 'attribute',
-			selector: 'p',
-			attribute: 'style',
 			default: {
 				color: 'black',
 				textAlign: 'left'
@@ -28,6 +25,7 @@ registerBlockType( 'myguten-block/test-block', {
 		let { attributes: { content, contentStyle }, setAttributes, className } = props;
 
 		const onChangeContent = ( newContent ) => {
+			event.stopPropagation();
 			setAttributes( { content: newContent } );
 		};
 
@@ -85,3 +83,5 @@ registerBlockType( 'myguten-block/test-block', {
 		);
 	}
 } );
+
+console.log( 'result', result );
