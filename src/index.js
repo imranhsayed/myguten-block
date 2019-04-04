@@ -8,6 +8,8 @@ registerBlockType( 'myguten-block/test-block', {
 
 	/**
 	 * This will display the last post from the database into the editor.
+	 * And if the post is published using this block. It will always show the last post
+	 * dynamically on the front end
 	 */
 	edit: withSelect( ( select ) => {
 		return {
